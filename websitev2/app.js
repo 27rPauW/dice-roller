@@ -63,7 +63,7 @@ function toggleAccordion(header) {
 // Impact 2 Tab Switching
 function switchImpact2Tab(tabId) {
     // Close any open popups
-    document.querySelectorAll('#impact2 .framework-popup.active').forEach(function(p) {
+    document.querySelectorAll('#impact-examples .framework-popup.active').forEach(function(p) {
         p.classList.remove('active');
     });
 
@@ -104,83 +104,6 @@ document.addEventListener('click', function(e) {
         });
     }
 });
-
-// Form Validation & Submission
-function handleSubmit(event) {
-    event.preventDefault();
-
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
-    let isValid = true;
-
-    // Reset errors
-    [name, email, message].forEach(field => {
-        field.classList.remove('error');
-    });
-    document.querySelectorAll('.error-message').forEach(msg => {
-        msg.style.display = 'none';
-    });
-
-    // Validate name
-    if (!name.value.trim()) {
-        name.classList.add('error');
-        document.getElementById('nameError').style.display = 'block';
-        isValid = false;
-    }
-
-    // Validate email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email.value)) {
-        email.classList.add('error');
-        document.getElementById('emailError').style.display = 'block';
-        isValid = false;
-    }
-
-    // Validate message
-    if (!message.value.trim()) {
-        message.classList.add('error');
-        document.getElementById('messageError').style.display = 'block';
-        isValid = false;
-    }
-
-    if (isValid) {
-        // Send to server
-        const submitBtn = document.querySelector('.submit-button');
-        submitBtn.disabled = true;
-        submitBtn.textContent = 'Sending...';
-
-        fetch('contact-handler.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: name.value.trim(),
-                email: email.value.trim(),
-                message: message.value.trim()
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('successMessage').style.display = 'block';
-                document.getElementById('contactForm').reset();
-                setTimeout(() => {
-                    document.getElementById('successMessage').style.display = 'none';
-                }, 5000);
-            } else {
-                alert('Error: ' + (data.error || 'Failed to send message'));
-            }
-        })
-        .catch(error => {
-            alert('Error sending message. Please try again.');
-            console.error('Contact form error:', error);
-        })
-        .finally(() => {
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Message';
-        });
-    }
-}
 
 // Floating Chat Widget
 (function() {

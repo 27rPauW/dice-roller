@@ -540,7 +540,7 @@ hr.light {
 
 .media-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2rem;
 }
 
@@ -1016,6 +1016,27 @@ hr.light {
     }
 }
 
+@media (max-width: 1024px) {
+    /* Homepage - Tablet View */
+    .hero-content {
+        padding: 4rem 2.5rem;
+    }
+
+    .hero-portrait {
+        max-height: 500px;
+        width: calc(100% - 2.5rem);
+        margin-right: 2.5rem;
+    }
+
+    .hero-logos {
+        gap: 1.5rem;
+    }
+
+    .hero-logo {
+        max-height: 50px;
+    }
+}
+
 @media (max-width: 900px) {
     /* Homepage - Stack Layout */
     .hero-container {
@@ -1048,27 +1069,6 @@ hr.light {
 
     .message-section {
         padding: 5rem 2rem;
-    }
-}
-
-@media (max-width: 1024px) {
-    /* Homepage - Tablet View */
-    .hero-content {
-        padding: 4rem 2.5rem;
-    }
-
-    .hero-portrait {
-        max-height: 500px;
-        width: calc(100% - 2.5rem);
-        margin-right: 2.5rem;
-    }
-
-    .hero-logos {
-        gap: 1.5rem;
-    }
-
-    .hero-logo {
-        max-height: 50px;
     }
 }
 
@@ -1470,155 +1470,125 @@ hr.light {
 
 /* Contact Page */
 .contact-page {
-    background: var(--off-white);
-}
-
-.contact-section {
-    padding: 4rem 3rem;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.contact-form {
-    background: var(--white);
-    padding: 3rem;
-    border: 2px solid var(--grid-gray);
-}
-
-.form-group {
-    margin-bottom: 2rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: var(--label-weight);
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--mid-gray);
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid var(--grid-gray);
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
-    font-family: inherit;
-    background: var(--off-white);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--charcoal);
-    background: var(--white);
-}
-
-.form-group textarea {
-    min-height: 150px;
-    resize: vertical;
-}
-
-.form-group input.error,
-.form-group textarea.error {
-    border-color: var(--accent);
-}
-
-.error-message {
-    color: var(--accent);
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
-    display: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.submit-button {
-    width: 100%;
-    background: var(--accent);
-    color: var(--white);
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 0.875rem;
-    font-weight: var(--label-weight);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.submit-button:hover {
-    background: var(--accent-hover);
-}
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 2px solid var(--grid-gray);
-}
-
-.social-link {
-    width: 48px;
-    height: 48px;
     background: var(--charcoal);
-    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: calc(100vh - 80px);
+}
+
+.contact-card {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+}
+
+.contact-title {
+    font-size: 3rem;
+    font-weight: var(--heading-weight);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    line-height: 1;
+}
+
+.contact-subtitle {
+    font-size: 1.05rem;
+    color: var(--grid-gray);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+.contact-cta {
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-cta-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: var(--label-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+}
+
+.contact-cta-email {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
     text-decoration: none;
-    transition: background 0.2s ease;
-    border: 2px solid var(--charcoal);
+    letter-spacing: 0.01em;
+    transition: color 0.2s ease;
 }
 
-.social-link:hover {
-    background: var(--accent);
+.contact-cta-email:hover {
+    color: var(--accent);
+}
+
+.contact-social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.contact-social {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: var(--label-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.contact-social:hover {
     border-color: var(--accent);
+    background: rgba(255, 79, 0, 0.1);
 }
 
-.social-link svg {
-    width: 20px;
-    height: 20px;
+.contact-social svg {
+    width: 18px;
+    height: 18px;
     fill: currentColor;
 }
 
-.contact-info {
-    text-align: center;
-    margin-top: 2rem;
+.contact-footnote {
+    font-size: 0.75rem;
     color: var(--mid-gray);
+    letter-spacing: 0.05em;
+    font-style: italic;
 }
 
-.contact-info p {
-    margin-bottom: 0.5rem;
-}
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 4rem 1.5rem;
+    }
 
-.contact-info a {
-    color: var(--accent);
-    text-decoration: none;
-}
+    .contact-title {
+        font-size: 2.2rem;
+    }
 
-.contact-info a:hover {
-    text-decoration: underline;
-}
+    .contact-cta-email {
+        font-size: 1.1rem;
+    }
 
-/* Success Message */
-.success-message {
-    display: none;
-    background: var(--accent);
-    color: var(--white);
-    padding: 1rem 1.5rem;
-    text-align: center;
-    margin-bottom: 1rem;
-    border-left: 4px solid var(--charcoal);
-    font-weight: var(--label-weight);
-    text-transform: uppercase;
-    font-size: 0.875rem;
-    letter-spacing: 0.1em;
+    .contact-social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
 }
 
 /* Impact Page - Grid of Truth */
@@ -2594,14 +2564,6 @@ hr.light {
         gap: 2rem;
     }
 
-    .case-org-name {
-        font-size: 2rem;
-    }
-
-    .case-hero-metric-value {
-        font-size: 3.5rem;
-    }
-
     .impact-header {
         padding: 3rem 1.5rem;
     }
@@ -2654,10 +2616,6 @@ hr.light {
 
     .page-title {
         font-size: 2rem;
-    }
-
-    .contact-form {
-        padding: 1.5rem;
     }
 
     .principle-title {
@@ -2843,6 +2801,8 @@ hr.light {
 
 .framework-hex-row {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.25rem;
     align-items: center;
 }
@@ -2936,32 +2896,56 @@ hr.light {
     letter-spacing: 0.05em;
 }
 
+@media (max-width: 1100px) {
+    .framework-section-label {
+        display: none !important;
+    }
+
+    .framework-hexgrid {
+        padding-top: 0.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .framework-diagram {
-        flex-direction: column;
-        gap: 2rem;
-        padding: 2rem 1.5rem;
+        gap: 1.5rem;
+        padding: 2rem 1rem;
     }
 
     .framework-hex {
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
+        font-size: 0.65rem;
+        padding: 0.5rem;
+    }
+
+    .framework-hex-row {
+        gap: 0.75rem;
+    }
+
+    .framework-hexgrid {
+        gap: 0.75rem;
+    }
+
+    .framework-arrow-right {
+        min-width: 100px;
+        padding: 0.8rem 1.8rem 0.8rem 0.8rem;
         font-size: 0.7rem;
     }
 
-    .framework-oval {
-        min-width: 120px;
-        font-size: 0.75rem;
+    .framework-arrow-right ul {
+        font-size: 0.55rem;
+        line-height: 1.6;
+        padding-left: 1em;
     }
 
-    .framework-label-guardrails,
-    .framework-label-growth {
-        position: static;
-        margin-bottom: 0;
+    .arrow-title {
+        font-size: 0.65rem;
+        margin-bottom: 0.25rem;
     }
 
     .framework-popup {
-        width: 220px;
+        width: min(220px, 80vw);
         top: calc(100% + 8px);
         left: 50%;
         right: auto;
@@ -2975,6 +2959,55 @@ hr.light {
         right: auto;
         top: calc(100% + 8px);
         transform: translateX(-50%);
+    }
+
+    .framework-cell {
+        position: relative;
+    }
+}
+
+@media (max-width: 480px) {
+    .framework-diagram {
+        gap: 0.75rem;
+        padding: 1.5rem 0.5rem;
+    }
+
+    .framework-hex {
+        width: 75px;
+        height: 75px;
+        font-size: 0.5rem;
+        padding: 0.3rem;
+    }
+
+    .framework-hex-row {
+        gap: 0.5rem;
+    }
+
+    .framework-hexgrid {
+        gap: 0.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .framework-arrow-right {
+        min-width: 60px;
+        padding: 0.6rem 1.2rem 0.6rem 0.5rem;
+        clip-path: polygon(0% 0%, 70% 0%, 100% 50%, 70% 100%, 0% 100%);
+    }
+
+    .framework-arrow-right ul {
+        font-size: 0.45rem;
+        line-height: 1.5;
+        padding-left: 0.8em;
+    }
+
+    .arrow-title {
+        font-size: 0.55rem;
+    }
+
+
+    .framework-popup {
+        width: min(180px, 75vw);
+        font-size: 0.7rem;
     }
 }
 
@@ -3147,12 +3180,223 @@ hr.light {
     }
 
     .impact2-panel .framework-hex {
-        width: 120px;
-        height: 120px;
+        width: 100px;
+        height: 100px;
     }
 
     .impact2-panel .framework-oval {
-        width: 140px;
-        height: 70px;
+        width: 120px;
+        height: 60px;
+    }
+
+    .impact2-panel .fw-label {
+        font-size: 0.4rem;
+    }
+
+    .impact2-panel .fw-sub {
+        font-size: 0.5rem;
+    }
+
+    .impact2-panel .framework-arrow-right ul {
+        font-size: 0.45rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .impact2-panel .framework-hex {
+        width: 75px;
+        height: 75px;
+    }
+
+    .impact2-panel .fw-label {
+        font-size: 0.35rem;
+    }
+
+    .impact2-panel .fw-sub {
+        font-size: 0.4rem;
+    }
+
+    .impact2-panel .framework-oval {
+        width: 90px;
+        height: 45px;
+        font-size: 0.5rem;
+    }
+
+    .impact2-panel .framework-arrow-right ul {
+        font-size: 0.4rem;
+        line-height: 1.4;
+    }
+
+    .impact2-tabs {
+        padding: 0 0.75rem;
+    }
+
+    .impact2-tab {
+        font-size: 0.7rem;
+        padding: 0.75rem 0.75rem;
+    }
+}
+
+/* ================================================================== */
+/* APPROACH PAGE - Principles Grid                                     */
+/* ================================================================== */
+
+.principles-grid-section {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem 2rem;
+}
+
+.principles-grid-section .beliefs-section-label {
+    font-size: 0.75rem;
+    font-weight: var(--label-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--mid-gray);
+    margin-bottom: 2.5rem;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.principle-card {
+    background: var(--white);
+    padding: 2rem 2.5rem;
+    border-left: 4px solid var(--accent);
+    transition: border-color 0.2s ease;
+}
+
+.principle-card:hover {
+    border-left-color: var(--charcoal);
+}
+
+.principle-card-full {
+    /* Single card in last row — no spanning needed */
+}
+
+.principle-card-number {
+    font-size: 0.7rem;
+    font-weight: var(--label-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.principle-card-title {
+    font-size: 1.25rem;
+    font-weight: var(--heading-weight);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+}
+
+.principle-card-text {
+    font-size: 0.9rem;
+    color: var(--mid-gray);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .principles-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .principles-grid-section {
+        padding: 3rem 1.5rem 2rem;
+    }
+}
+
+/* ================================================================== */
+/* APPROACH PAGE - Separator & Value Capture                           */
+/* ================================================================== */
+
+.approach-separator {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.approach-separator hr {
+    border-top: 4px solid var(--charcoal);
+    margin: 4rem 0;
+}
+
+.value-capture-section {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 4rem 3rem 6rem;
+}
+
+.value-capture-section .beliefs-section-label {
+    font-size: 0.75rem;
+    font-weight: var(--label-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--mid-gray);
+    margin-bottom: 3rem;
+}
+
+.value-capture-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.value-capture-heading {
+    font-size: 1.1rem;
+    font-weight: var(--heading-weight);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid var(--charcoal);
+}
+
+.value-capture-heading.growth-heading {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.value-capture-heading.guardrail-heading {
+    color: var(--charcoal);
+}
+
+.value-capture-item {
+    margin-bottom: 1.5rem;
+}
+
+.value-capture-item strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: var(--label-weight);
+    margin-bottom: 0.25rem;
+}
+
+.value-capture-item p {
+    font-size: 0.9rem;
+    color: var(--mid-gray);
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .value-capture-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .approach-separator {
+        padding: 0 1.5rem;
+    }
+
+    .value-capture-section {
+        padding: 3rem 1.5rem 4rem;
     }
 }
