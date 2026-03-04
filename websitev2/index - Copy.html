@@ -1,0 +1,3227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Willmott | Transformation Architect | Strategic Manifesto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /*
+         * SWISS-INTERNATIONAL DESIGN SYSTEM
+         * "Strategic Precision" & "Structural Integrity"
+         *
+         * Principles:
+         * - Neo-Grotesk Typography (Inter) with tight tracking on headlines
+         * - Mathematical 12-column grid system
+         * - Monochrome base (#1A1A1A text, #F9F9F9 backgrounds)
+         * - Single accent color (International Orange #FF6B35)
+         * - Sharp rectangular forms (no border-radius)
+         * - Thick horizontal rules as section dividers (blueprint-style)
+         * - Asymmetrical layouts with active white space
+         * - Grayscale image treatment
+         */
+
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Swiss-International Color Palette */
+            --charcoal: #1A1A1A;
+            --off-white: #F9F9F9;
+            --white: #FFFFFF;
+            --accent: #FF4F00; /* International Orange */
+            --accent-hover: #E04500;
+            --grid-gray: #E0E0E0;
+            --mid-gray: #666666;
+
+            /* Typography Scale */
+            --font-family: 'Inter', 'Helvetica Neue', -apple-system, sans-serif;
+            --heading-weight: 800;
+            --body-weight: 400;
+            --label-weight: 600;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.5;
+            color: var(--charcoal);
+            background-color: var(--off-white);
+            font-weight: var(--body-weight);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Utility - Horizontal Rules (Blueprint Dividers) */
+        hr {
+            border: none;
+            border-top: 4px solid var(--charcoal);
+            margin: 0;
+        }
+
+        hr.light {
+            border-top: 2px solid var(--grid-gray);
+        }
+
+        /* Utility - Section Labels */
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--mid-gray);
+        }
+
+        /* Navigation - Minimalist Index Style */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .logo {
+            color: var(--charcoal);
+            font-size: 0.875rem;
+            font-weight: var(--heading-weight);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: var(--label-weight);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--charcoal);
+            transition: all 0.2s ease;
+        }
+
+        /* Pages */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 12-Column Grid System */
+        .grid-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        /* Hero Section - Swiss Architecture */
+        .tagline {
+            color: var(--mid-gray);
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: var(--heading-weight);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .hero-intro {
+            font-size: 1.125rem;
+            color: var(--mid-gray);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-logos {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            border-top: 2px solid var(--grid-gray);
+            border-bottom: 2px solid var(--grid-gray);
+        }
+
+        .hero-logo {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .hero-logo:hover {
+            opacity: 1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border: none;
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .hero-image {
+            grid-column: 9 / 13;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .profile-placeholder {
+            width: 400px;
+            height: 400px;
+            background: var(--grid-gray);
+            border: 3px solid var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            background: var(--grid-gray);
+            border: 3px solid var(--charcoal);
+        }
+
+        /* Bridge Section */
+        .bridge-section {
+            background: var(--white);
+            padding: 6rem 0;
+            border-bottom: 4px solid var(--charcoal);
+        }
+
+        .bridge-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+        }
+
+        .bridge-headline {
+            grid-column: 1 / 7;
+            font-size: 2.5rem;
+            font-weight: var(--heading-weight);
+            color: var(--charcoal);
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .bridge-text {
+            grid-column: 8 / 13;
+            font-size: 1rem;
+            color: var(--mid-gray);
+            line-height: 1.7;
+        }
+
+        .bridge-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .bridge-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* About Page */
+        .about-page {
+            background: var(--off-white);
+        }
+
+        .page-header {
+            background: var(--white);
+            padding: 4rem 3rem;
+            text-align: left;
+            color: var(--charcoal);
+            border-bottom: 4px solid var(--charcoal);
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .page-subtitle {
+            color: var(--mid-gray);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: var(--label-weight);
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: 4rem 3rem;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--charcoal);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 100%;
+            padding: 0 0 0 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            left: -5px;
+            background: var(--accent);
+            top: 2rem;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+
+        .timeline-card {
+            background: var(--white);
+            padding: 2rem;
+            border: 2px solid var(--grid-gray);
+            border-left: 4px solid var(--accent);
+        }
+
+        .timeline-year {
+            display: block;
+            color: var(--mid-gray);
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-role {
+            font-size: 1.5rem;
+            font-weight: var(--heading-weight);
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .timeline-company {
+            color: var(--mid-gray);
+            font-weight: var(--label-weight);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .company-logo {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        .timeline-achievements {
+            color: var(--mid-gray);
+            font-size: 0.875rem;
+            list-style: none;
+            padding-left: 1rem;
+            border-left: 2px solid var(--grid-gray);
+        }
+
+        .timeline-achievements li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Concurrent Roles */
+        .concurrent-roles {
+            position: relative;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+            padding-left: 4rem;
+        }
+
+        .concurrent-roles::before {
+            content: '2021 - 2025';
+            position: absolute;
+            top: -1.5rem;
+            left: 4rem;
+            color: var(--mid-gray);
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .concurrent-roles .timeline-item {
+            width: 45%;
+            padding: 0 1rem;
+            text-align: left;
+            position: static;
+            opacity: 1;
+            animation: none;
+        }
+
+        .concurrent-roles .timeline-item .timeline-dot {
+            display: none;
+        }
+
+        .concurrent-roles .timeline-item .timeline-year {
+            display: none;
+        }
+
+        .concurrent-label {
+            text-align: center;
+            color: var(--gray-text);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .concurrent-roles {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .concurrent-roles .timeline-item {
+                width: 100%;
+                padding-left: 50px !important;
+            }
+        }
+
+        /* Media Page */
+        .media-page {
+            background: var(--off-white);
+        }
+
+        .media-section {
+            padding: 4rem 3rem;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .media-category {
+            margin-bottom: 4rem;
+        }
+
+        .media-category h2 {
+            color: var(--charcoal);
+            font-size: 1.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--charcoal);
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .media-card {
+            background: var(--white);
+            padding: 2rem;
+            border: 2px solid var(--grid-gray);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: border-color 0.2s ease;
+        }
+
+        .media-card:hover {
+            border-color: var(--accent);
+        }
+
+        .media-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--charcoal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .media-card-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--white);
+        }
+
+        .media-card-icon.video {
+            background: var(--accent);
+        }
+
+        .media-card-icon.document {
+            background: var(--charcoal);
+        }
+
+        .media-card-icon.article {
+            background: var(--charcoal);
+        }
+
+        .media-card h3 {
+            color: var(--charcoal);
+            font-size: 1.125rem;
+            font-weight: var(--heading-weight);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .media-card p {
+            color: var(--mid-gray);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .media-card .source {
+            color: var(--mid-gray);
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Chat Page */
+        /* Core Beliefs Page */
+        .pov-page {
+            background: var(--off-white);
+        }
+
+        .beliefs-hero {
+            background: var(--white);
+            padding: 7.5rem 3rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            border-bottom: 4px solid var(--charcoal);
+        }
+
+        .beliefs-hero-title {
+            font-size: 4rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+            max-width: 900px;
+        }
+
+        .beliefs-hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+            max-width: 800px;
+            margin-bottom: 0;
+        }
+
+        .beliefs-section {
+            padding: 7.5rem 3rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .beliefs-section:last-child {
+            border-bottom: none;
+        }
+
+        .beliefs-section-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--mid-gray);
+            margin-bottom: 2rem;
+        }
+
+        /* Six Principles Grid */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .principle {
+            background: var(--white);
+            border: 2px solid var(--grid-gray);
+            padding: 2rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .principle-number {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .principle-title {
+            font-size: 1.75rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .principle-text {
+            font-size: 0.875rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+        }
+
+        /* Value Trinity */
+        .value-trinity {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+
+        .value-trinity-title {
+            font-size: 2.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .trinity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .trinity-column {
+            background: var(--white);
+            color: var(--charcoal);
+            padding: 2rem;
+            border-top: 4px solid var(--accent);
+        }
+
+        .trinity-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .trinity-title {
+            font-size: 1.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .trinity-text {
+            font-size: 0.875rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .trinity-example {
+            font-size: 0.813rem;
+            color: var(--charcoal);
+            font-style: italic;
+            padding: 1rem;
+            background: var(--off-white);
+            border-left: 3px solid var(--accent);
+        }
+
+        /* CTA Section */
+        .beliefs-cta {
+            padding: 4rem 3rem;
+            max-width: 1440px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .beliefs-cta-link {
+            display: inline-block;
+            color: var(--charcoal);
+            font-size: 1.125rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            padding: 1.5rem 3rem;
+            border: 2px solid var(--charcoal);
+            transition: all 0.2s ease;
+        }
+
+        .beliefs-cta-link:hover {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+
+        @media (max-width: 1024px) {
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trinity-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .beliefs-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .beliefs-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .beliefs-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .principle-title {
+                font-size: 1.25rem;
+            }
+
+            .value-trinity-title {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Chatbot Page */
+        .chatbot-page {
+            background: var(--off-white);
+            min-height: 100vh;
+        }
+
+        .chatbot-page-section {
+            padding: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .chatbot-page-container {
+            background: var(--white);
+            border: 2px solid var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 300px);
+            min-height: 500px;
+        }
+
+        .chatbot-window {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .chat-message.user .message-avatar {
+            background: var(--charcoal);
+        }
+
+        .message-content {
+            flex: 1;
+            background: var(--off-white);
+            padding: 1.25rem;
+            border: 2px solid var(--grid-gray);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--charcoal);
+        }
+
+        .chat-message.user .message-content {
+            background: var(--white);
+            border: 2px solid var(--charcoal);
+        }
+
+        .message-content p {
+            margin-bottom: 1rem;
+        }
+
+        .message-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-content ul {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+            padding: 0;
+        }
+
+        .message-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .chatbot-input-area {
+            display: flex;
+            gap: 0;
+            border-top: 2px solid var(--charcoal);
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 1.25rem 1.5rem;
+            border: none;
+            font-family: var(--font-family);
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        .chatbot-input:focus {
+            outline: none;
+        }
+
+        .chatbot-input::placeholder {
+            color: var(--mid-gray);
+        }
+
+        .chatbot-send-button {
+            padding: 1.25rem 2.5rem;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-family);
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.2s ease;
+        }
+
+        .chatbot-send-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .chatbot-send-button:active {
+            transform: translateY(1px);
+        }
+
+        /* Contact Page */
+        .contact-page {
+            background: var(--off-white);
+        }
+
+        .contact-section {
+            padding: 4rem 3rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border: 2px solid var(--grid-gray);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: var(--label-weight);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--mid-gray);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--grid-gray);
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            font-family: inherit;
+            background: var(--off-white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--charcoal);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-group input.error,
+        .form-group textarea.error {
+            border-color: var(--accent);
+        }
+
+        .error-message {
+            color: var(--accent);
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .submit-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--grid-gray);
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: var(--charcoal);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.2s ease;
+            border: 2px solid var(--charcoal);
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--gray-text);
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: var(--orange-accent);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: var(--accent);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--charcoal);
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* Impact Page - Grid of Truth */
+        .impact-page {
+            background: var(--off-white);
+        }
+
+        .impact-header {
+            background: var(--white);
+            padding: 7.5rem 3rem;
+            text-align: left;
+            color: var(--charcoal);
+            border-bottom: 4px solid var(--charcoal);
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .impact-title {
+            font-size: 3.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .impact-subtitle {
+            color: var(--mid-gray);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: var(--label-weight);
+        }
+
+        .impact-grid {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 7.5rem 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .case-study {
+            background: var(--white);
+            border: 2px solid var(--grid-gray);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .case-header {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 2rem;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .case-org-name {
+            font-size: 2rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.75rem;
+        }
+
+        .case-sector {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+        }
+
+        .case-hero-metric {
+            padding: 2rem;
+            background: var(--accent);
+            color: var(--white);
+            text-align: center;
+            border-bottom: 3px solid var(--charcoal);
+        }
+
+        .case-hero-metric-value {
+            font-size: 3.5rem;
+            font-weight: var(--heading-weight);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-hero-metric-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0.9;
+        }
+
+        .case-content {
+            padding: 2rem;
+            flex: 1;
+        }
+
+        .case-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .case-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .case-section-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--mid-gray);
+            margin-bottom: 1rem;
+        }
+
+        .case-section-title {
+            font-size: 1.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .case-section-text {
+            color: var(--mid-gray);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .case-section-text:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-section-text strong {
+            color: var(--charcoal);
+            font-weight: var(--label-weight);
+        }
+
+        /* Accordion for Pivot Details */
+        .accordion-header {
+            background: var(--off-white);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid var(--grid-gray);
+            margin-top: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            border-color: var(--accent);
+        }
+
+        .accordion-header-text {
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+        }
+
+        .accordion-icon {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: var(--off-white);
+            border-left: 4px solid var(--accent);
+        }
+
+        .accordion-content.active {
+            max-height: 1000px;
+        }
+
+        .accordion-content-inner {
+            padding: 1.5rem;
+        }
+
+        /* Data Grid for Outcomes */
+        .data-grid {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+
+        .data-grid li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 0.5rem;
+            background: var(--off-white);
+            color: var(--charcoal);
+            font-size: 0.875rem;
+            line-height: 1.6;
+        }
+
+        .data-grid li strong {
+            font-weight: var(--heading-weight);
+            color: var(--charcoal);
+        }
+
+        /* Back Link */
+        .impact-back-link {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3rem 4rem;
+            text-align: center;
+        }
+
+        .impact-back-link a {
+            display: inline-block;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background 0.2s ease;
+        }
+
+        .impact-back-link a:hover {
+            background: var(--accent);
+        }
+
+        /* Homepage - Simple Landing */
+        .hero {
+            background: var(--white);
+            padding: 0;
+            border-bottom: 4px solid var(--charcoal);
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid !important;
+            grid-template-columns: 60% 40% !important;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            gap: 0;
+        }
+
+        .hero-content {
+            padding: 6rem 3rem 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-portrait {
+            height: calc(100vh - 80px);
+            max-height: 80vh;
+            width: 100%;
+            overflow: hidden;
+            background: var(--off-white);
+            display: block;
+            margin-left: 3rem;
+        }
+
+        .hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .cta-primary,
+        .cta-secondary {
+            display: inline-block;
+            padding: 1.25rem 3rem;
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        .cta-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border: 2px solid var(--charcoal);
+        }
+
+        .cta-secondary:hover {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+
+        /* Client Logos Section */
+        .logos-section {
+            background: var(--off-white);
+            padding: 7.5rem 3rem;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .logos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .client-logo {
+            width: 100%;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+            filter: grayscale(0%);
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
+        .client-logo:hover {
+            opacity: 1;
+        }
+
+        /* Message Section */
+        .message-section {
+            background: var(--white);
+            padding: 7.5rem 3rem;
+        }
+
+        .message-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .message-title {
+            font-size: 2.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .message-text {
+            font-size: 1.125rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .message-link {
+            color: var(--accent);
+            font-weight: var(--label-weight);
+            text-decoration: none;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.2s ease;
+        }
+
+        .message-link:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Homepage - Manifesto Style (Legacy - Not Used) */
+        .home-hero {
+            background: var(--white);
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 0;
+            border-bottom: 4px solid var(--charcoal);
+            position: relative;
+        }
+
+        .home-hero-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 60% 40%;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+        }
+
+        .home-hero-content {
+            padding: 4rem 3rem 4rem 3rem;
+        }
+
+        .home-hero-headline {
+            font-size: 4rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            color: var(--charcoal);
+            margin-bottom: 2rem;
+        }
+
+        .home-hero-subheadline {
+            font-size: 1.25rem;
+            color: var(--mid-gray);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .home-hero-portrait {
+            height: calc(100vh - 80px);
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: var(--off-white);
+        }
+
+        .home-hero-portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: grayscale(15%);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 3rem;
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--mid-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 1.25rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Core Beliefs Grid - Homepage */
+        .home-beliefs-section {
+            background: var(--off-white);
+            padding: 8rem 0 10rem;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .home-beliefs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .home-beliefs-title {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--mid-gray);
+            margin-bottom: 4rem;
+        }
+
+        .home-beliefs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem 4rem;
+        }
+
+        .home-belief {
+            background: var(--white);
+            border: 2px solid var(--grid-gray);
+            padding: 3rem;
+            border-left: 4px solid var(--accent);
+        }
+
+        .home-belief-number {
+            font-size: 3rem;
+            font-weight: var(--heading-weight);
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .home-belief-title {
+            font-size: 1.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .home-belief-text {
+            font-size: 0.875rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+        }
+
+        /* Impact Preview - Homepage */
+        .home-impact-section {
+            background: var(--white);
+            padding: 8rem 0 10rem;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .home-impact-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .home-impact-title {
+            font-size: 2.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .home-impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .home-impact-case {
+            background: var(--off-white);
+            border: 2px solid var(--grid-gray);
+            padding: 2rem;
+        }
+
+        .home-impact-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--mid-gray);
+            margin-bottom: 1rem;
+        }
+
+        .home-impact-org {
+            font-size: 1.75rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .home-impact-section-title {
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .home-impact-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .home-impact-text {
+            font-size: 0.813rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+        }
+
+        .home-impact-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .home-impact-cta a {
+            display: inline-block;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background 0.2s ease;
+        }
+
+        .home-impact-cta a:hover {
+            background: var(--accent);
+        }
+
+        /* Value Trinity - Homepage */
+        .home-trinity-section {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 8rem 0 10rem;
+            border-bottom: 2px solid var(--charcoal);
+        }
+
+        .home-trinity-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+
+        .home-trinity-title {
+            font-size: 2.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .home-trinity-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .home-trinity-item {
+            background: var(--white);
+            color: var(--charcoal);
+            padding: 2rem;
+            border-top: 4px solid var(--accent);
+        }
+
+        .home-trinity-label {
+            font-size: 0.75rem;
+            font-weight: var(--label-weight);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .home-trinity-item-title {
+            font-size: 1.5rem;
+            font-weight: var(--heading-weight);
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .home-trinity-text {
+            font-size: 0.875rem;
+            color: var(--mid-gray);
+            line-height: 1.6;
+        }
+
+        /* Closing Hook */
+        .home-closing-section {
+            background: var(--white);
+            padding: 8rem 0 10rem;
+        }
+
+        .home-closing-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            text-align: center;
+        }
+
+        .home-closing-text {
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            font-weight: var(--label-weight);
+        }
+
+        .home-closing-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 1.25rem 3rem;
+            font-size: 0.875rem;
+            font-weight: var(--label-weight);
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: background 0.2s ease;
+        }
+
+        .home-closing-cta:hover {
+            background: var(--accent-hover);
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem 1.5rem;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                border-bottom: 2px solid var(--charcoal);
+            }
+
+            .nav-links.active {
+                max-height: 350px;
+            }
+
+            .nav-links li {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--grid-gray);
+            }
+
+            .grid-container,
+            .bridge-container {
+                padding: 0 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Simple Homepage Mobile */
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-portrait {
+                height: 50vh;
+                order: -1;
+            }
+
+            .hero-content {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .logos-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .message-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .message-title {
+                font-size: 1.75rem;
+            }
+
+            .message-text {
+                font-size: 1rem;
+            }
+
+            .bridge-headline {
+                grid-column: 1;
+                font-size: 1.75rem;
+            }
+
+            .bridge-text {
+                grid-column: 1;
+                font-size: 0.875rem;
+            }
+
+            .profile-placeholder,
+            .profile-photo {
+                width: 300px;
+                height: 300px;
+            }
+
+            .page-header {
+                padding: 3rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline-section,
+            .media-section {
+                padding: 3rem 1.5rem;
+            }
+
+            .timeline-item {
+                padding-left: 3rem;
+            }
+
+            .concurrent-roles {
+                grid-template-columns: 1fr;
+                padding-left: 3rem;
+            }
+
+            /* Chatbot Page Mobile */
+            .chatbot-page-section {
+                padding: 1.5rem;
+            }
+
+            .chatbot-page-container {
+                height: calc(100vh - 250px);
+                min-height: 400px;
+            }
+
+            .chatbot-window {
+                padding: 1rem;
+            }
+
+            .chat-message {
+                gap: 0.75rem;
+            }
+
+            .message-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 0.65rem;
+            }
+
+            .message-content {
+                padding: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .chatbot-input {
+                padding: 1rem;
+                font-size: 0.875rem;
+            }
+
+            .chatbot-send-button {
+                padding: 1rem 1.5rem;
+                font-size: 0.75rem;
+            }
+
+            /* Impact Page Mobile */
+            .impact-grid {
+                grid-template-columns: 1fr;
+                padding: 3rem 1.5rem;
+                gap: 2rem;
+            }
+
+            .impact-header {
+                padding: 3rem 1.5rem;
+            }
+
+            .impact-title {
+                font-size: 2.5rem;
+            }
+
+            .case-org-name {
+                font-size: 1.5rem;
+            }
+
+            .case-hero-metric-value {
+                font-size: 2.5rem;
+            }
+
+            .case-section-title {
+                font-size: 1.25rem;
+            }
+
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="logo" onclick="showPage('home')">PAUL WILLMOTT</a>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" onclick="showPage('home')" class="active" data-page="home">Home</a></li>
+            <li><a href="#" onclick="showPage('pov')" data-page="pov">Perspective</a></li>
+            <li><a href="#" onclick="showPage('impact')" data-page="impact">Impact</a></li>
+            <li><a href="#" onclick="showPage('about')" data-page="about">About</a></li>
+            <li><a href="#" onclick="showPage('chatbot')" data-page="chatbot">AI Chat</a></li>
+            <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Board Director & Transformation Architect</h1>
+                    <p class="hero-subtitle">
+                        Helping the world's largest enterprises bridge the gap between AI's potential and the structural transformation required to capture it. Three decades building AI-enabled businesses across sectors and regions.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#" onclick="showPage('pov')" class="cta-primary">View Perspective</a>
+                        <a href="#" onclick="showPage('impact')" class="cta-secondary">See Impact</a>
+                    </div>
+                </div>
+                <div class="hero-portrait">
+                    <img src="New PW photo.jpg" alt="Paul Willmott">
+                </div>
+            </div>
+        </div>
+
+        <!-- Client Logos -->
+        <div class="logos-section">
+            <div class="logos-grid">
+                <img src="Accenture logo.jpg" alt="Accenture" class="client-logo">
+                <img src="McKinsey Logo.png" alt="McKinsey" class="client-logo">
+                <img src="cabinet_office_logo.png" alt="UK Cabinet Office" class="client-logo">
+                <img src="New LEGO logo.png" alt="LEGO Group" class="client-logo">
+            </div>
+        </div>
+
+        <!-- Key Message -->
+        <div class="message-section">
+            <div class="message-content">
+                <h2 class="message-title">Strategy-Led Digital & AI Transformation</h2>
+                <p class="message-text">
+                    Technology is no longer the limiting factor. Leadership, strategy & capability are.
+                    I work with board and C-suites to architect transformations that deliver measurable impact.
+                </p>
+                <a href="#" onclick="showPage('about')" class="message-link">Learn More →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Page -->
+    <section id="about" class="page about-page">
+        <div class="page-header">
+            <h1 class="page-title">Career Journey</h1>
+            <p class="page-subtitle">Three decades of digital transformation and strategic leadership</p>
+        </div>
+        <div class="timeline-section">
+            <div class="timeline">
+                <!-- LEGO Digital Play -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2025 - Present</span>
+                        <h3 class="timeline-role">Chief Technology Officer</h3>
+                        <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=lego.com&sz=64" alt="LEGO" class="company-logo">LEGO Digital Play</p>
+                        <ul class="timeline-achievements">
+                            <li>Led work to shape new digital play business</li>
+                            <li>Shaped ground-breaking AI-enabled gameplay, operations and business models</li>
+                            <li>Currently building an AI-first technology function</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Concurrent Roles: LEGO Brand Group & UK Cabinet Office -->
+                <div class="concurrent-roles">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <span class="timeline-year">2021 - 2025</span>
+                            <h3 class="timeline-role">Advisor to Chairman</h3>
+                            <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=lego.com&sz=64" alt="LEGO" class="company-logo"><img src="https://www.google.com/s2/favicons?domain=kirkbi.com&sz=64" alt="KIRKBI" class="company-logo">LEGO Brand Group (KIRKBI)</p>
+                            <ul class="timeline-achievements">
+                                <li>Led digital & AI transformation across portfolio (e.g., The LEGO Group, Merlin Entertainments, LEGO Education)</li>
+                                <li>Worked with owner family and chairman to shape digital/AI strategy</li>
+                                <li>Shaped new businesses including LEGO Digital Play</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-card">
+                            <span class="timeline-year">2021 - 2025</span>
+                            <h3 class="timeline-role">Chair, UK Government Digital Advisory Board</h3>
+                            <p class="timeline-company"><img src="cabinet_office_logo.png" alt="UK Cabinet Office" class="company-logo">UK Cabinet Office</p>
+                            <ul class="timeline-achievements">
+                                <li>Appointed by Prime Minister to drive digital/AI transformation (~£40bn spend)</li>
+                                <li>Chaired Digital & Data Board, convening Departmental Permanent Secretaries (CEOs)</li>
+                                <li>Shaped Government's Digital Strategy. Secured 4x increase in funding</li>
+                                <li>Built high-performing digital leadership team including Chief Digital & AI Officers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LEGO CDO -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">2019 - 2020</span>
+                        <h3 class="timeline-role">Chief Digital Officer</h3>
+                        <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=lego.com&sz=64" alt="LEGO" class="company-logo">The LEGO Group</p>
+                        <ul class="timeline-achievements">
+                            <li>Reset digital & technology strategy, underpinning a doubling of revenue in 5 years</li>
+                            <li>Scored highest upward feedback score in executive team</li>
+                            <li>Doubled cyber security benchmark score</li>
+                            <li>Steered business through COVID</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- McKinsey -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">1996 - 2019</span>
+                        <h3 class="timeline-role">Founder & Global Managing Partner</h3>
+                        <p class="timeline-company"><img src="McKinsey Logo.png" alt="McKinsey" class="company-logo">McKinsey Digital</p>
+                        <ul class="timeline-achievements">
+                            <li>Founded and built the No. 1 rated global digital consulting practice (Gartner)</li>
+                            <li>Built team of ~200 partners, ~2000 associates, ~1000 engineers</li>
+                            <li>Grew business to $1bn+ revenue</li>
+                            <li>Partnered with Lloyds Banking Group Bank for 10 years to deliver Europe's best digital bank (Euromoney)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Accenture -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-year">1991 - 1996</span>
+                        <h3 class="timeline-role">Software Engineer & Senior Manager</h3>
+                        <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=accenture.com&sz=64" alt="Accenture" class="company-logo">Accenture</p>
+                        <ul class="timeline-achievements">
+                            <li>Led teams of 5-100 colleagues to design and implement software</li>
+                            <li>Delivered Goldman Sachs option trading systems</li>
+                            <li>Developed proficiency in 10+ coding languages</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Non-Executive Roles -->
+            <h2 style="text-align: center; color: var(--navy-primary); margin: 3rem 0 2rem; font-size: 1.8rem;">Non-Executive Roles</h2>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 3rem;">
+                <div class="timeline-card" style="flex: 1; min-width: 250px; max-width: 300px;">
+                    <span class="timeline-year">2021 - Present</span>
+                    <h3 class="timeline-role">Advisor to Board</h3>
+                    <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=merlinentertainments.biz&sz=64" alt="Merlin" class="company-logo">Merlin Entertainments</p>
+                </div>
+                <div class="timeline-card" style="flex: 1; min-width: 250px; max-width: 300px;">
+                    <span class="timeline-year">2023 - Present</span>
+                    <h3 class="timeline-role">Non-Executive Director</h3>
+                    <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=area9lyceum.com&sz=64" alt="Area9" class="company-logo">Area9 Lyceum (AI Software)</p>
+                </div>
+                <div class="timeline-card" style="flex: 1; min-width: 250px; max-width: 300px;">
+                    <span class="timeline-year">2023 - 2025</span>
+                    <h3 class="timeline-role">Non-Executive Director</h3>
+                    <p class="timeline-company"><img src="https://www.google.com/s2/favicons?domain=brainpop.com&sz=64" alt="BrainPOP" class="company-logo">BrainPOP (EdTech)</p>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <h2 style="text-align: center; color: var(--navy-primary); margin: 3rem 0 2rem; font-size: 1.8rem;">Education & Qualifications</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; max-width: 1200px; margin-left: auto; margin-right: auto;">
+                <div class="timeline-card" style="text-align: center; padding: 2rem;">
+                    <img src="university-of-oxford-logo.png" alt="Oxford University" style="height: 80px; width: auto; margin-bottom: 1rem; object-fit: contain;">
+                    <h3 class="timeline-role" style="font-size: 1rem; margin-bottom: 0.5rem;">Oxford University</h3>
+                    <p style="color: var(--gray-text); font-size: 0.9rem;">AI Program</p>
+                </div>
+                <div class="timeline-card" style="text-align: center; padding: 2rem;">
+                    <img src="Stanford-University-Logo.jpg" alt="Stanford University" style="height: 80px; width: auto; margin-bottom: 1rem; object-fit: contain;">
+                    <h3 class="timeline-role" style="font-size: 1rem; margin-bottom: 0.5rem;">Stanford University</h3>
+                    <p style="color: var(--gray-text); font-size: 0.9rem;">Machine Learning Specialization</p>
+                </div>
+                <div class="timeline-card" style="text-align: center; padding: 2rem;">
+                    <img src="deeplearning logo.jpg" alt="DeepLearning.ai" style="height: 80px; width: auto; margin-bottom: 1rem; object-fit: contain;">
+                    <h3 class="timeline-role" style="font-size: 1rem; margin-bottom: 0.5rem;">DeepLearning.ai</h3>
+                    <p style="color: var(--gray-text); font-size: 0.9rem;">Various advanced AI courses</p>
+                </div>
+                <div class="timeline-card" style="text-align: center; padding: 2rem;">
+                    <img src="IMD logo.jpg" alt="IMD" style="height: 80px; width: auto; margin-bottom: 1rem; object-fit: contain;">
+                    <h3 class="timeline-role" style="font-size: 1rem; margin-bottom: 0.5rem;">IMD</h3>
+                    <p style="color: var(--gray-text); font-size: 0.9rem;">High Performance Boards Program</p>
+                </div>
+                <div class="timeline-card" style="text-align: center; padding: 2rem;">
+                    <img src="Imperial logo.jpg" alt="Imperial College London" style="height: 80px; width: auto; margin-bottom: 1rem; object-fit: contain;">
+                    <h3 class="timeline-role" style="font-size: 1rem; margin-bottom: 0.5rem;">Imperial College London</h3>
+                    <p style="color: var(--gray-text); font-size: 0.9rem;">BSc Physics (2.1)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Page -->
+    <section id="impact" class="page impact-page">
+        <div class="impact-header">
+            <h1 class="impact-title">Impact</h1>
+            <p class="impact-subtitle">Cornerstone Transformations · Three Decades of Scale</p>
+        </div>
+
+        <div class="impact-grid">
+            <!-- Lloyds Banking Group Banking Group -->
+            <div class="case-study">
+                <div class="case-header">
+                    <h2 class="case-org-name">Lloyds Banking Group Banking Group</h2>
+                    <div class="case-sector">Sector: Financial Services</div>
+                </div>
+                <div class="case-hero-metric">
+                    <div class="case-hero-metric-value">15.7M</div>
+                    <div class="case-hero-metric-label">Active Digital Users</div>
+                </div>
+                <div class="case-content">
+                    <!-- Challenge -->
+                    <div class="case-section">
+                        <div class="case-section-label">01 · The Challenge</div>
+                        <h3 class="case-section-title">Manual Legacy Friction</h3>
+                        <p class="case-section-text">
+                            Britain's largest retail bank operated with fragmented legacy systems that created friction across customer touchpoints. Manual processes slowed service delivery, with simple refund operations taking days instead of minutes.
+                        </p>
+                        <p class="case-section-text">
+                            The imperative was clear: transform operational efficiency while maintaining the trust of millions of customers and navigating complex regulatory requirements.
+                        </p>
+                    </div>
+
+                    <!-- Pivot -->
+                    <div class="case-section">
+                        <div class="case-section-label">02 · The Pivot</div>
+                        <h3 class="case-section-title">The Architecture</h3>
+                        <p class="case-section-text">
+                            Implemented a <strong>Product and Platform model</strong> to modernize the technology estate while maintaining operational stability. Established agile delivery frameworks that enabled rapid iteration without compromising security or compliance.
+                        </p>
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-header-text">View Technical Details</span>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p class="case-section-text">
+                                    <strong>Platform Architecture:</strong> Decomposed monolithic systems into modular services, enabling independent scaling and deployment.
+                                </p>
+                                <p class="case-section-text">
+                                    <strong>API-First Design:</strong> Created standardized interfaces across banking operations, reducing integration complexity and enabling faster feature delivery.
+                                </p>
+                                <p class="case-section-text">
+                                    <strong>Operational Excellence:</strong> Automated key workflows including fraud detection, refund processing, and customer onboarding, reducing processing times from days to seconds.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outcome -->
+                    <div class="case-section">
+                        <div class="case-section-label">03 · The Outcome</div>
+                        <h3 class="case-section-title">The Scale</h3>
+                        <ul class="data-grid">
+                            <li><strong>49.3%</strong> cost-to-income ratio achieved, demonstrating operational efficiency at scale</li>
+                            <li><strong>15.7M active digital users</strong> across mobile and online channels</li>
+                            <li><strong>30 seconds</strong> average refund processing time, reduced from days</li>
+                            <li><strong>Market-leading NPS scores</strong> in UK retail banking customer satisfaction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UK Government -->
+            <div class="case-study">
+                <div class="case-header">
+                    <h2 class="case-org-name">UK Government</h2>
+                    <div class="case-sector">Sector: Public Sector</div>
+                </div>
+                <div class="case-hero-metric">
+                    <div class="case-hero-metric-value">£1.1B</div>
+                    <div class="case-hero-metric-label">Annual Savings</div>
+                </div>
+                <div class="case-content">
+                    <!-- Challenge -->
+                    <div class="case-section">
+                        <div class="case-section-label">01 · The Challenge</div>
+                        <h3 class="case-section-title">Fragmented Legacy State</h3>
+                        <p class="case-section-text">
+                            The UK civil service operated across hundreds of disparate systems with limited interoperability. Digital capability varied dramatically across departments, creating inconsistent citizen experiences and duplicated effort.
+                        </p>
+                        <p class="case-section-text">
+                            As Executive Chair of the Central Digital and Data Office, the mandate was to establish a unified digital government strategy while managing £6B+ annual technology spend across 80+ departmental CIOs.
+                        </p>
+                    </div>
+
+                    <!-- Pivot -->
+                    <div class="case-section">
+                        <div class="case-section-label">02 · The Pivot</div>
+                        <h3 class="case-section-title">The Architecture</h3>
+                        <p class="case-section-text">
+                            Launched a <strong>Six-Mission Roadmap</strong> to modernize government digital infrastructure. Established cross-government standards, shared platforms, and unified data practices while building digital capability across the senior civil service.
+                        </p>
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-header-text">View Technical Details</span>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p class="case-section-text">
+                                    <strong>Shared Platforms:</strong> Created reusable services (GOV.UK Pay, Notify, Sign) that departments could adopt instead of building bespoke solutions.
+                                </p>
+                                <p class="case-section-text">
+                                    <strong>Data Standards:</strong> Established unified data architecture and governance frameworks across government departments.
+                                </p>
+                                <p class="case-section-text">
+                                    <strong>Digital Upskilling:</strong> Led comprehensive capability-building program for senior civil servants, ensuring leadership understood the strategic implications of technology decisions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outcome -->
+                    <div class="case-section">
+                        <div class="case-section-label">03 · The Outcome</div>
+                        <h3 class="case-section-title">The Scale</h3>
+                        <ul class="data-grid">
+                            <li><strong>£1.1B annual savings</strong> through technology consolidation and modernization</li>
+                            <li><strong>90% of senior civil servants</strong> digitally upskilled through structured capability programs</li>
+                            <li><strong>21 of top 75 high-volume services</strong> modernized for improved citizen experience</li>
+                            <li><strong>Cross-government platforms</strong> adopted by multiple departments, eliminating duplication</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The LEGO Group -->
+            <div class="case-study">
+                <div class="case-header">
+                    <h2 class="case-org-name">The LEGO Group</h2>
+                    <div class="case-sector">Sector: Consumer Products</div>
+                </div>
+                <div class="case-hero-metric">
+                    <div class="case-hero-metric-value">DKK 74.3B</div>
+                    <div class="case-hero-metric-label">Annual Revenue</div>
+                </div>
+                <div class="case-content">
+                    <!-- Challenge -->
+                    <div class="case-section">
+                        <div class="case-section-label">01 · The Challenge</div>
+                        <h3 class="case-section-title">Digital-Physical Divide</h3>
+                        <p class="case-section-text">
+                            A global consumer brand with strong physical retail presence faced the challenge of creating meaningful digital engagement without cannibalizing core product sales. The "Kidult" market (adults buying LEGO) represented untapped growth potential but required different engagement strategies.
+                        </p>
+                        <p class="case-section-text">
+                            The imperative: build a unified digital ecosystem that connected physical play experiences with digital innovation while scaling operations to support exponential growth.
+                        </p>
+                    </div>
+
+                    <!-- Pivot -->
+                    <div class="case-section">
+                        <div class="case-section-label">02 · The Pivot</div>
+                        <h3 class="case-section-title">The Architecture</h3>
+                        <p class="case-section-text">
+                            Established <strong>Unified Digital Ecosystem</strong> connecting LEGO's physical products with digital experiences. Created LEGO ID as the foundational identity platform, enabling personalized experiences across channels while providing unprecedented customer insights.
+                        </p>
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span class="accordion-header-text">View Technical Details</span>
+                            <span class="accordion-icon">+</span>
+                        </div>
+                        <div class="accordion-content">
+                            <div class="accordion-content-inner">
+                                <p class="case-section-text">
+                                    <strong>LEGO ID Platform:</strong> Centralized identity and profile management enabling unified customer view across digital and physical touchpoints.
+                                </p>
+                                <p class="case-section-text">
+                                    <strong>Digital Play Experiences:</strong> Connected physical LEGO sets with digital building instructions, AR experiences, and community features.
+                                </p>
+                                <p class="case-section-text">
+                                    <strong>Data-Driven Insights:</strong> Leveraged customer behavior data to inform product development, marketing strategies, and inventory optimization.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Outcome -->
+                    <div class="case-section">
+                        <div class="case-section-label">03 · The Outcome</div>
+                        <h3 class="case-section-title">The Scale</h3>
+                        <ul class="data-grid">
+                            <li><strong>DKK 74.3B revenue</strong> demonstrating sustained growth and market leadership</li>
+                            <li><strong>Doubled 2019 performance</strong> through digital-physical integration and Kidult market expansion</li>
+                            <li><strong>24% increase in operating cash flow</strong> driven by operational efficiency and digital engagement</li>
+                            <li><strong>LEGO ID adoption</strong> across millions of customers enabling personalized experiences at scale</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="impact-back-link">
+            <a href="#" onclick="showPage('home')">← Back to Home</a>
+        </div>
+    </section>
+
+    <!-- Media Page -->
+    <section id="media" class="page media-page">
+        <div class="page-header">
+            <h1 class="page-title">Media</h1>
+            <p class="page-subtitle">Articles, publications, and appearances</p>
+        </div>
+        <div class="media-section">
+            <!-- Videos -->
+            <div class="media-category">
+                <h2>Video Appearances</h2>
+                <div class="media-grid">
+                    <a href="https://parliamentlive.tv/event/index/ae80b471-e7c1-42fc-91e4-ad74a204f97c" target="_blank" class="media-card">
+                        <div class="media-card-icon video">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <h3>Public Accounts Committee</h3>
+                        <p>Oral evidence on "Digital transformation in government: addressing barriers to efficiency"</p>
+                        <span class="source">UK Parliament - May 2023</span>
+                    </a>
+                    <a href="https://parliamentlive.tv/event/index/22830346-fdd4-461c-ab12-0347fedc477f?in=10:03:07" target="_blank" class="media-card">
+                        <div class="media-card-icon video">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <h3>Public Accounts Committee</h3>
+                        <p>Parliamentary testimony on digital transformation and government technology initiatives</p>
+                        <span class="source">UK Parliament</span>
+                    </a>
+                    <a href="https://www.youtube.com/watch?v=TlWBKrUCNRA" target="_blank" class="media-card">
+                        <div class="media-card-icon video">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <h3>Presentation to Webit Festival (15,000 attendees)</h3>
+                        <p>Presentation on digital transformation, AI strategy, and technology leadership</p>
+                        <span class="source">YouTube</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Government Publications -->
+            <div class="media-category">
+                <h2>Government Publications</h2>
+                <div class="media-grid">
+                    <a href="https://www.gov.uk/government/publications/roadmap-for-digital-and-data-2022-to-2025/transforming-for-a-digital-future-2022-to-2025-roadmap-for-digital-and-data" target="_blank" class="media-card">
+                        <div class="media-card-icon document">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+                        </div>
+                        <h3>Transforming for a Digital Future</h3>
+                        <p>Government's 2022 to 2025 roadmap for digital and data - foreword by Paul Willmott as Executive Chair of CDDO</p>
+                        <span class="source">GOV.UK</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Harvard Business Review Articles -->
+            <div class="media-category">
+                <h2>Harvard Business Review Articles</h2>
+                <div class="media-grid">
+                    <a href="https://hbr.org/2015/10/assessment-does-your-team-think-digitally" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #c41230;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Does Your Team Think Digitally?</h3>
+                        <p>Success depends on strengths in four key areas when it comes to digital thinking</p>
+                        <span class="source">October 2015</span>
+                    </a>
+                    <a href="https://hbr.org/2013/10/can-your-c-suite-handle-big-data" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #c41230;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Can Your C-Suite Handle Big Data?</h3>
+                        <p>Why so many firms' analytics efforts fall short and how to build data-driven leadership</p>
+                        <span class="source">October 2013</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- McKinsey.com Articles -->
+            <div class="media-category">
+                <h2>McKinsey.com Articles</h2>
+                <div class="media-grid">
+                    <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/why-digital-strategies-fail" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #051c2c;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Why Digital Strategies Fail</h3>
+                        <p>Five pitfalls that derail digital strategies and how to avoid them</p>
+                        <span class="source">McKinsey Quarterly</span>
+                    </a>
+                    <a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/strategic-principles-for-competing-in-the-digital-age" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #051c2c;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Strategic Principles for Competing in the Digital Age</h3>
+                        <p>Six critical decisions CEOs must make to address the digital revolution</p>
+                        <span class="source">McKinsey Quarterly - May 2014</span>
+                    </a>
+                    <a href="https://www.mckinsey.com/capabilities/strategy-and-corporate-finance/our-insights/the-strategy-and-corporate-finance-blog/should-you-digitize-your-core-business-or-build-new-digital-ventures" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #051c2c;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Should You Digitize Your Core Business?</h3>
+                        <p>Why companies need a dual response: transform the core and build new ventures</p>
+                        <span class="source">McKinsey & Company</span>
+                    </a>
+                    <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/adapting-your-board-to-the-digital-age" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #051c2c;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Adapting Your Board to the Digital Age</h3>
+                        <p>Four ways to get boards in the game as technology and competition evolve</p>
+                        <span class="source">July 2016</span>
+                    </a>
+                    <a href="https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/want-to-become-agile-learn-from-your-it-team" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #051c2c;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>Want to Become Agile? Learn from Your IT Team</h3>
+                        <p>How companies can increase decision velocity and minimize complexity</p>
+                        <span class="source">July 2015</span>
+                    </a>
+                    <a href="https://www.mckinsey.com/industries/technology-media-and-telecommunications/our-insights/how-companies-become-digital-leaders" target="_blank" class="media-card">
+                        <div class="media-card-icon article" style="background: #051c2c;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>How Companies Become Digital Leaders</h3>
+                        <p>How senior executives can raise the Digital Quotient of their companies</p>
+                        <span class="source">January 2016</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Other Articles/Posts -->
+            <div class="media-category">
+                <h2>Other Articles & Posts</h2>
+                <div class="media-grid">
+                    <a href="https://www.linkedin.com/pulse/10-predictions-digital-2018-paul-willmott" target="_blank" class="media-card">
+                        <div class="media-card-icon" style="background: #0077b5;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        </div>
+                        <h3>10 Predictions for Digital</h3>
+                        <p>Insights on the future of digital transformation and technology trends</p>
+                        <span class="source">LinkedIn - 2018</span>
+                    </a>
+                    <a href="https://uk.linkedin.com/in/paul-willmott-199a3" target="_blank" class="media-card">
+                        <div class="media-card-icon" style="background: #0077b5;">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </div>
+                        <h3>LinkedIn Profile</h3>
+                        <p>Connect and view all articles and posts</p>
+                        <span class="source">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perspective Page (Core Beliefs) -->
+    <section id="pov" class="page pov-page">
+        <!-- Hero Section -->
+        <div class="beliefs-hero">
+            <h1 class="beliefs-hero-title">Technology is no longer the limiting factor. Leadership, Strategy and capability are.</h1>
+            <p class="beliefs-hero-subtitle">
+                Transformation is not a digital project; it is a structural realignment. I treat technology as a catalyst for business model reconfiguration, bridging the gap between Board-level governance and engineering-led execution.
+            </p>
+        </div>
+
+        <!-- Six Principles -->
+        <div class="beliefs-section">
+            <div class="beliefs-section-label">The Willmott Transformation Architecture</div>
+            <div class="principles-grid">
+                <!-- Principle 01 -->
+                <div class="principle">
+                    <div class="principle-number">Principle 01</div>
+                    <h2 class="principle-title">Strategy Over Silicon</h2>
+                    <p class="principle-text">
+                        There is no "Digital Strategy." Technology is a strategic enabler to a new business reality, not a standalone goal. Successful transformation begins with business model clarity, not vendor selection.
+                    </p>
+                </div>
+
+                <!-- Principle 02 -->
+                <div class="principle">
+                    <div class="principle-number">Principle 02</div>
+                    <h2 class="principle-title">Strategic Threat & Opportunity</h2>
+                    <p class="principle-text">
+                        Treat AI and emerging tech as fundamental threats to the current value chain and primary opportunities for architectural reconfiguration. Disruption is not optional—it's inevitable.
+                    </p>
+                </div>
+
+                <!-- Principle 03 -->
+                <div class="principle">
+                    <div class="principle-number">Principle 03</div>
+                    <h2 class="principle-title">The Boardroom Brick Wall</h2>
+                    <p class="principle-text">
+                        Successful transformation starts with closing the capability gap at the Board and senior leadership levels. If your Board doesn't understand the technology, they cannot govern its risks or unlock its value.
+                    </p>
+                </div>
+
+                <!-- Principle 04 -->
+                <div class="principle">
+                    <div class="principle-number">Principle 04</div>
+                    <h2 class="principle-title">The Velocity Flywheel</h2>
+                    <p class="principle-text">
+                        Abandon "Big Bang" implementations. Start with short-term quick wins to build political and financial capital, then increase scope progressively. Momentum compounds faster than perfection.
+                    </p>
+                </div>
+
+                <!-- Principle 05 -->
+                <div class="principle">
+                    <div class="principle-number">Principle 05</div>
+                    <h2 class="principle-title">The Human Constraint</h2>
+                    <p class="principle-text">
+                        Barriers to success are rarely technical; they are almost always rooted in culture, governance, and organizational design. Technology enables change—humans drive it.
+                    </p>
+                </div>
+
+                <!-- Principle 06 -->
+                <div class="principle">
+                    <div class="principle-number">Principle 06</div>
+                    <h2 class="principle-title">Triple-Value Capture</h2>
+                    <p class="principle-text">
+                        Architect for three simultaneous outcomes: Efficiency Savings, Top-Line Growth, and New Standalone Businesses. Transformation that only cuts costs is incomplete.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Value Trinity -->
+        <div class="beliefs-section value-trinity">
+            <h2 class="value-trinity-title">Architecting the Value Trinity</h2>
+            <div class="trinity-grid">
+                <!-- Column A: Core Efficiency -->
+                <div class="trinity-column">
+                    <div class="trinity-label">Column A</div>
+                    <h3 class="trinity-title">Core Efficiency</h3>
+                    <p class="trinity-text">
+                        Digitizing the core to slash legacy friction and failure demand. Automate manual processes, eliminate redundant systems, and free up resources for strategic initiatives.
+                    </p>
+                    <div class="trinity-example">
+                        Example: Lloyds Banking Group cut operating costs by 17% in 3 years through platform modernization and process automation.
+                    </div>
+                </div>
+
+                <!-- Column B: Top-Line Growth -->
+                <div class="trinity-column">
+                    <div class="trinity-label">Column B</div>
+                    <h3 class="trinity-title">Top-Line Growth</h3>
+                    <p class="trinity-text">
+                        Owning the direct customer relationship to drive new revenue. Build digital channels that enhance customer intimacy and unlock previously inaccessible market segments.
+                    </p>
+                    <div class="trinity-example">
+                        Example: LEGO doubled sales in 5 years through a unified digital ecosystem.
+                    </div>
+                </div>
+
+                <!-- Column C: New Business -->
+                <div class="trinity-column">
+                    <div class="trinity-label">Column C</div>
+                    <h3 class="trinity-title">New Business</h3>
+                    <p class="trinity-text">
+                        Reconfiguring the value chain to launch AI-native divisions or standalone platforms. Create entirely new revenue streams that didn't exist in the legacy model.
+                    </p>
+                    <div class="trinity-example">
+                        Example: Government shared platforms (e.g., Gov.uk) enabling £1.1B annual savings while creating reusable services.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="beliefs-cta">
+            <a href="#" onclick="showPage('impact')" class="beliefs-cta-link">See these beliefs in action → View Case Studies</a>
+        </div>
+    </section>
+
+    <!-- Chatbot Page -->
+    <section id="chatbot" class="page chatbot-page">
+        <div class="page-header">
+            <h1 class="page-title">Chat with Paul's AI</h1>
+            <p class="page-subtitle">Ask me anything about Paul's experience, projects, or expertise</p>
+        </div>
+        <div class="chatbot-page-section">
+            <div class="chatbot-page-container">
+                <div class="chatbot-window" id="chatbotWindow">
+                    <div class="chat-message bot">
+                        <div class="message-avatar">AI</div>
+                        <div class="message-content">
+                            <p>Hello! I'm Paul's AI assistant. Ask me about his experience, career journey, or expertise in digital transformation and AI.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbot-input-area">
+                    <input type="text" id="chatbotInput" class="chatbot-input" placeholder="Type your message..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+                    <button id="chatbotSendButton" class="chatbot-send-button" onclick="sendChatMessage()">
+                        <span>Send</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="page contact-page">
+        <div class="page-header">
+            <h1 class="page-title">Let's Connect</h1>
+            <p class="page-subtitle">I'd love to hear from you. Get in touch!</p>
+        </div>
+        <div class="contact-section">
+            <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)">
+                <div class="success-message" id="successMessage">
+                    Thank you! Your message has been sent successfully.
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <p class="error-message" id="nameError">Please enter your name</p>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <p class="error-message" id="emailError">Please enter a valid email address</p>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                    <p class="error-message" id="messageError">Please enter your message</p>
+                </div>
+                <button type="submit" class="submit-button">Send Message</button>
+            </form>
+
+            <div class="social-links">
+                <a href="https://linkedin.com/in/paulwillmott" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/paul.willmott.35/" target="_blank" class="social-link" aria-label="Facebook">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="mailto:contact@paulwillmott.ai" class="social-link" aria-label="Email">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+                    </svg>
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:contact@paulwillmott.ai">contact@paulwillmott.ai</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Context Data -->
+    <script src="chatbot-context.js"></script>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Close mobile menu
+            document.querySelector('.nav-links').classList.remove('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Accordion Toggle (for Impact page)
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+
+            // Toggle active class
+            content.classList.toggle('active');
+
+            // Update icon
+            if (content.classList.contains('active')) {
+                icon.textContent = '−';
+            } else {
+                icon.textContent = '+';
+            }
+        }
+
+        // Form Validation & Submission
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            let isValid = true;
+
+            // Reset errors
+            [name, email, message].forEach(field => {
+                field.classList.remove('error');
+            });
+            document.querySelectorAll('.error-message').forEach(msg => {
+                msg.style.display = 'none';
+            });
+
+            // Validate name
+            if (!name.value.trim()) {
+                name.classList.add('error');
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email.value)) {
+                email.classList.add('error');
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate message
+            if (!message.value.trim()) {
+                message.classList.add('error');
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Send to server
+                const submitBtn = document.querySelector('.submit-button');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+
+                fetch('contact-handler.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: name.value.trim(),
+                        email: email.value.trim(),
+                        message: message.value.trim()
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('successMessage').style.display = 'block';
+                        document.getElementById('contactForm').reset();
+                        setTimeout(() => {
+                            document.getElementById('successMessage').style.display = 'none';
+                        }, 5000);
+                    } else {
+                        alert('Error: ' + (data.error || 'Failed to send message'));
+                    }
+                })
+                .catch(error => {
+                    alert('Error sending message. Please try again.');
+                    console.error('Contact form error:', error);
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Send Message';
+                });
+            }
+        }
+
+        // Chatbot functionality
+        function sendChatMessage() {
+            const input = document.getElementById('chatbotInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            const chatWindow = document.getElementById('chatbotWindow');
+
+            // Add user message
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'chat-message user';
+            userMessageDiv.innerHTML = `
+                <div class="message-avatar">You</div>
+                <div class="message-content">
+                    <p>${escapeHtml(message)}</p>
+                </div>
+            `;
+            chatWindow.appendChild(userMessageDiv);
+
+            // Clear input
+            input.value = '';
+
+            // Scroll to bottom
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            // Simulate bot response (in production, this would call an API)
+            setTimeout(() => {
+                const botMessageDiv = document.createElement('div');
+                botMessageDiv.className = 'chat-message bot';
+                botMessageDiv.innerHTML = `
+                    <div class="message-avatar">AI</div>
+                    <div class="message-content">
+                        <p>${getBotResponse(message)}</p>
+                    </div>
+                `;
+                chatWindow.appendChild(botMessageDiv);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            }, 800);
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getBotResponse(message) {
+            const lowerMessage = message.toLowerCase();
+
+            // Check if chatbotContext is loaded
+            if (typeof chatbotContext === 'undefined') {
+                return "I'm having trouble accessing my knowledge base. Please refresh the page and try again.";
+            }
+
+            // "No digital strategy" / Strategy questions
+            if (lowerMessage.includes('digital strategy') || lowerMessage.includes('strategy') || lowerMessage.includes('approach')) {
+                return `<strong>${chatbotContext.corePrinciples.noDigitalStrategy}</strong><br><br>` +
+                       `Paul's approach is strategy-first, technology-second. ${chatbotContext.corePrinciples.executionGap}<br><br>` +
+                       `He bridges Board-level governance with engineering-led execution—bringing both strategic vision and practical implementation expertise.`;
+            }
+
+            // Data / Plumbing questions
+            if (lowerMessage.includes('data') || lowerMessage.includes('foundation') || lowerMessage.includes('plumbing')) {
+                return `<strong>"AI eats data"</strong> — ${chatbotContext.corePrinciples.dataFoundation}<br><br>` +
+                       `Paul emphasizes Board-level data accountability as a strategic imperative. Without clean, accessible data foundations, AI projects become expensive experimentation rather than value creation.<br><br>` +
+                       `See <strong>Principle 03: Board-Level Data Accountability</strong> on the Perspective page for more.`;
+            }
+
+            // Impact/Results/Metrics questions
+            if (lowerMessage.includes('impact') || lowerMessage.includes('result') || lowerMessage.includes('metric') || lowerMessage.includes('outcome')) {
+                const lloyds = chatbotContext.caseStudies.lloyds;
+                const ukGov = chatbotContext.caseStudies.ukGovernment;
+                const lego = chatbotContext.caseStudies.lego;
+
+                return `Paul has delivered measurable impact across three sectors:<br><br>` +
+                       `<strong>${lloyds.sector}:</strong> ${lloyds.outcomes.join(', ')}<br><br>` +
+                       `<strong>${ukGov.sector}:</strong> ${ukGov.outcomes.join(', ')}<br><br>` +
+                       `<strong>${lego.sector}:</strong> ${lego.outcomes.join(', ')}<br><br>` +
+                       `Visit the <strong>Impact</strong> page to see full case studies with Challenge-Pivot-Outcome frameworks.`;
+            }
+
+            // Experience/Background/Career questions
+            if (lowerMessage.includes('experience') || lowerMessage.includes('background') || lowerMessage.includes('career') || lowerMessage.includes('who')) {
+                const current = chatbotContext.experience.current;
+                return `${chatbotContext.identity.name} is a ${chatbotContext.identity.role}.<br><br>` +
+                       `<strong>Current Role:</strong> ${current.role} at ${current.organization}<br>` +
+                       `${current.focus}<br><br>` +
+                       `<strong>Career Highlights:</strong><br>` +
+                       `• Founded McKinsey Digital (grew to $1bn+ revenue, #1 Gartner-rated practice)<br>` +
+                       `• Chair of UK Government Digital Advisory Board (delivered £1.1B savings)<br>` +
+                       `• Group CDO at Lloyds Banking Group Banking (49.3% cost-to-income ratio)<br>` +
+                       `• Started as Software Engineer at Accenture (10+ coding languages)<br><br>` +
+                       `Check the <strong>About</strong> page for the full career timeline.`;
+            }
+
+            // Principles/Beliefs/Philosophy questions
+            if (lowerMessage.includes('principle') || lowerMessage.includes('belief') || lowerMessage.includes('philosophy') || lowerMessage.includes('doctrine')) {
+                const principles = chatbotContext.transformationArchitecture.principles;
+                return `Paul's <strong>Transformation Architecture</strong> is built on six core principles:<br><br>` +
+                       principles.map(p => `<strong>${p.number}. ${p.title}</strong>`).join('<br>') + '<br><br>' +
+                       `Key doctrine: <em>${chatbotContext.corePrinciples.noDigitalStrategy}</em><br><br>` +
+                       `Visit the <strong>Perspective</strong> page to explore each principle in depth.`;
+            }
+
+            // Board/Governance questions
+            if (lowerMessage.includes('board') || lowerMessage.includes('governance') || lowerMessage.includes('executive')) {
+                return `<strong>Governing for Speed (Principle 04):</strong><br>` +
+                       `The Board must shift from passive 'approval' mode to active capital reallocation. Governance should be an accelerator, not a brake.<br><br>` +
+                       `Paul emphasizes Board-level data accountability and establishing clear strategic principles that enable rapid decision-making. ${chatbotContext.corePrinciples.changeThePeople}<br><br>` +
+                       `He served as Chair of the UK Government Digital Advisory Board, driving £40bn of digital/AI spend and delivering £1.1B in annual savings.`;
+            }
+
+            // AI / Artificial Intelligence questions
+            if (lowerMessage.includes('ai') || lowerMessage.includes('artificial intelligence') || lowerMessage.includes('machine learning')) {
+                return `Paul views AI as a <strong>strategic multiplier</strong>, not a standalone goal. ${chatbotContext.corePrinciples.dataFoundation}<br><br>` +
+                       `He's currently building an AI-first technology function at LEGO Digital Play, shaping AI-enabled gameplay, operations, and business models.<br><br>` +
+                       `<strong>Education:</strong> Oxford AI Program, Stanford Machine Learning Specialization, DeepLearning.ai courses<br><br>` +
+                       `His approach: AI must be grounded in business reality and strategic objectives—not "innovation theatre."`;
+            }
+
+            // McKinsey questions
+            if (lowerMessage.includes('mckinsey') || lowerMessage.includes('consulting')) {
+                const mckinsey = chatbotContext.experience.previous.find(exp => exp.organization === "McKinsey Digital");
+                return `Paul founded <strong>McKinsey Digital</strong> and served as Global Managing Partner from 1996-2019.<br><br>` +
+                       `<strong>Built:</strong><br>` +
+                       mckinsey.achievements.map(a => `• ${a}`).join('<br>') + '<br><br>' +
+                       `This experience shaped his belief in balancing strategy with execution at global scale.`;
+            }
+
+            // Lloyds Banking Group questions
+            if (lowerMessage.includes('lloyds') || lowerMessage.includes('banking') || lowerMessage.includes('financial')) {
+                const lloyds = chatbotContext.caseStudies.lloyds;
+                return `<strong>Lloyds Banking Group Banking Group Case Study:</strong><br><br>` +
+                       `<strong>Challenge:</strong> ${lloyds.challenge}<br><br>` +
+                       `<strong>The Pivot:</strong> ${lloyds.pivot}<br><br>` +
+                       `<strong>Outcomes:</strong><br>` +
+                       lloyds.outcomes.map(o => `• ${o}`).join('<br>') + '<br><br>' +
+                       `Paul served as Group Chief Digital & Innovation Officer (2019-2021) and partnered with Lloyds Banking Group for 10 years through McKinsey Digital, delivering Europe's best digital bank (Euromoney).`;
+            }
+
+            // UK Government questions
+            if (lowerMessage.includes('government') || lowerMessage.includes('public sector') || lowerMessage.includes('cabinet')) {
+                const ukGov = chatbotContext.caseStudies.ukGovernment;
+                return `<strong>UK Government Transformation:</strong><br><br>` +
+                       `Paul chaired the UK Government Digital Advisory Board (2021-2025), appointed by the Prime Minister to drive digital/AI transformation across ~£40bn spend.<br><br>` +
+                       `<strong>Challenge:</strong> ${ukGov.challenge}<br><br>` +
+                       `<strong>The Pivot:</strong> ${ukGov.pivot}<br><br>` +
+                       `<strong>Impact:</strong><br>` +
+                       ukGov.outcomes.map(o => `• ${o}`).join('<br>') + '<br><br>' +
+                       `He secured 4x increase in funding and built high-performing digital leadership teams including Chief Digital & AI Officers.`;
+            }
+
+            // LEGO questions
+            if (lowerMessage.includes('lego') || lowerMessage.includes('toy') || lowerMessage.includes('play')) {
+                const lego = chatbotContext.caseStudies.lego;
+                const current = chatbotContext.experience.current;
+                return `<strong>LEGO Transformation:</strong><br><br>` +
+                       `<strong>Current:</strong> ${current.role} at ${current.organization} — ${current.focus}<br><br>` +
+                       `<strong>Previous:</strong> Advisor to LEGO Brand Group Chairman (2021-2025), leading digital & AI transformation across the portfolio (LEGO Group, Merlin Entertainments, LEGO Education).<br><br>` +
+                       `<strong>Challenge:</strong> ${lego.challenge}<br><br>` +
+                       `<strong>The Pivot:</strong> ${lego.pivot}<br><br>` +
+                       `<strong>Business Impact:</strong><br>` +
+                       lego.outcomes.map(o => `• ${o}`).join('<br>');
+            }
+
+            // Pilot / POC / Proof of Concept questions
+            if (lowerMessage.includes('pilot') || lowerMessage.includes('poc') || lowerMessage.includes('proof of concept')) {
+                const principle = chatbotContext.transformationArchitecture.principles[1]; // Foundation Stones
+                return `<strong>${principle.title} (Principle ${principle.number}):</strong><br><br>` +
+                       `${principle.description}<br><br>` +
+                       `Paul is clear: Proof-of-Concept without production-readiness is "innovation theatre." Every initiative must deliver both immediate ROI <em>and</em> a reusable platform capability.`;
+            }
+
+            // Self-funding questions
+            if (lowerMessage.includes('fund') || lowerMessage.includes('budget') || lowerMessage.includes('cost')) {
+                const principle = chatbotContext.transformationArchitecture.principles[5]; // Self-Funding
+                return `<strong>${principle.title} (Principle ${principle.number}):</strong><br><br>` +
+                       `${principle.description}<br><br>` +
+                       `${chatbotContext.corePrinciples.dualMission} — Use efficiency gains from "Defend" to finance "Attack" initiatives. Transformation should be self-sustaining, not a perpetual cost center.`;
+            }
+
+            // Education questions
+            if (lowerMessage.includes('education') || lowerMessage.includes('degree') || lowerMessage.includes('qualification')) {
+                return `<strong>Paul's Education:</strong><br>` +
+                       chatbotContext.education.map(edu => `• <strong>${edu.institution}</strong> — ${edu.program}`).join('<br>') + '<br><br>' +
+                       `His technical foundation (Imperial College Physics + Stanford ML + Oxford AI) combined with business education (IMD) reflects his bridge between technical execution and strategic leadership.`;
+            }
+
+            // Mathematician disambiguation
+            if (lowerMessage.includes('quant') || lowerMessage.includes('finance') || lowerMessage.includes('wilmott') || lowerMessage.includes('mathematician')) {
+                return `${chatbotContext.identity.notTheMathematician}. That's Paul <strong>Wilmott</strong> (single 'l').<br><br>` +
+                       `This is Paul <strong>Willmott</strong> (double 'l') — focused on how technology transforms organizational value, not quantitative finance or Black-Scholes models.`;
+            }
+
+            // Default response with personality
+            return `That's an interesting question. Let me help you understand Paul's work.<br><br>` +
+                   `I can discuss:<br>` +
+                   `• <strong>Transformation Strategy</strong> (the "No Digital Strategy" rule)<br>` +
+                   `• <strong>Case Studies</strong> (Lloyds Banking Group 49.3% efficiency, UK Gov £1.1B savings, LEGO doubling)<br>` +
+                   `• <strong>Six Core Principles</strong> (Strategy Over Silicon, Foundation Stones, etc.)<br>` +
+                   `• <strong>Career Journey</strong> (McKinsey Digital founder to LEGO CTO)<br>` +
+                   `• <strong>Board Governance</strong> (Governing for Speed)<br><br>` +
+                   `What would you like to explore?`;
+        }
+
+        // Add scroll animation for timeline items
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe timeline items when About page is shown
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            observer.observe(item);
+        });
+
+    </script>
+</body>
+</html>
